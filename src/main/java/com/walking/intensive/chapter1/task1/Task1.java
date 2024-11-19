@@ -15,29 +15,32 @@ package com.walking.intensive.chapter1.task1;
 public class Task1 {
     public static void main(String[] args) {
 //        Для собственных проверок можете делать любые изменения в этом методе
-        int age = 0;
-
+        int age = 19;
         System.out.println(getAgeString(age));
     }
     static String getAgeString(int age) {
-             // Проверка на отрицательные цифры, 0 и цифры более 122 (max установленный возраст человека)
-        if (age <= 0 || age >= 122 ) {
+             // Проверка на отрицательные цифры и 0)
+        if (age <= 0) {
             return "Некорректный ввод";
         }
+        // Поиск чисел типа 11,12,13,14, и т.д.
+        else if ( age % 100 == 11 ||  age % 100 == 12 || age % 100 == 13 ||  age % 100 == 14)  {
+            return ("Вам " + age + " лет");
+        }
              // Поиск чисел относящихся к значению "лет"
-        else if ( age == 11 || age % 10 == 5 || age % 100 == 5 || age % 10 == 6 || age % 100 == 6 || age % 10 == 7 || age % 100 == 7 || age % 10 == 8 || age % 100 == 8 || age % 10 == 9 || age % 100 == 9 || age % 10 == 0)  {
-            return (age + " лет");
+        else if ( age % 10 == 5 || age % 10 == 6 ||  age % 10 == 7 || age % 10 == 8 ||  age % 10 == 9 || age % 10 == 0)  {
+            return ("Вам " + age + " лет");
         }
             // Поиск чисел относящихся к значению "год"
-         else if (age % 10 == 1 || age % 100 == 1)  {
-            return (age + " год");
+         else if (age % 10 == 1)  {
+            return ("Вам " + age + " год");
         }
-            // Поиск чисел относящихся к значению "года", они же все оставшиеся
-        // else if (age % 10 == 2 || age % 100 == 2 || age % 10 == 3 || age % 100 == 3 || age % 10 == 4 || age % 100 == 4)  {
-         else
-             return (age + " года");
-        // }
+            // Поиск чисел относящихся к значению "года"
+        else if (age % 10 == 2 || age % 10 == 3 || age % 10 == 4)  {
+            return ("Вам " + age + " года");
+        }
+        return "";
+    }
 
     }
-}
 
