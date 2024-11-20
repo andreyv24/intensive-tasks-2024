@@ -26,16 +26,15 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static double getAreaByHeron(double a, double b, double c) {
-        if ((a + b) > c || (a + c) > b || (b + c) > a) {
-            double p = (a + b + c) / 2;
-            double s = Math.sqrt(p * (p - a) * (p - b) * (p - c));
-            System.out.println("Площадь треугольника = " + s);
+//        if ((a + b) > c || (a + c) > b || (b + c) > a) {
+//            double p = (a + b + c) / 2;
+//            double s = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+//            System.out.println("Площадь треугольника = " + s);
         //    return "Площадь треугольника = " + "1";
-        }
-        else
-        return -1;
-
-        return 0; // Заглушка. При реализации - удалить
+//        }
+//        else
+//        return -1;
+        return 0;
     }
 
     /**
