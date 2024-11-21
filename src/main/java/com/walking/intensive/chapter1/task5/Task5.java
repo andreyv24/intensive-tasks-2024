@@ -26,7 +26,7 @@ public class Task5 {
      */
     static double getAreaByHeron(double a, double b, double c) {
 
-        System.out.print("Hello, world!");
+
         if ((a + b) > c || (a + c) > b || (b + c) > a) {
             double p = (a + b + c) / 2;
             double s = Math.sqrt(p * (p - a) * (p - b) * (p - c));
