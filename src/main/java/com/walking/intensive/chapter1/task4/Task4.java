@@ -28,7 +28,7 @@ public class Task4 {
 //        Для собственных проверок можете делать любые изменения в этом методе
         double a = 0;
         double b = 0;
-        double c = 4;
+        double c = 1;
 
         System.out.println(solveEquation(a, b, c));
     }
