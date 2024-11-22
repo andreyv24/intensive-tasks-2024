@@ -1,5 +1,7 @@
 package com.walking.intensive.chapter1.task5;
 
+import java.util.Arrays;
+
 /**
  * Задача поиска площади, величин углов, длин высот, биссектрис, медиан, радиусов вписанной и описанной вокруг
  * треугольника окружностей является центральной в Геометрии.
@@ -11,9 +13,22 @@ package com.walking.intensive.chapter1.task5;
 public class Task5 {
     public static void main(String[] args) {
 //        Для собственных проверок можете делать любые изменения в этом методе
-        double a = 2;
-        double b = 4;
-        double c = 1;
+    }
+
+    static boolean ifTriangleExist(double a, double b, double c) {
+        if ((a + b) > c && (a + c) > b && (b + c) > a) {
+            return true;
+        }
+        return false;
+    }
+
+    static double getTrianglePerimeter(double a, double b, double c) {
+        return (a + b + c) / 2;
+    }
+
+    static double getTriangleSquare(double a, double b, double c) {
+        double perimeter = getTrianglePerimeter(a, b, c);
+        return Math.sqrt(perimeter * (perimeter - a) * (perimeter - b) * (perimeter - c));
     }
 
     /**
@@ -26,15 +41,10 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static double getAreaByHeron(double a, double b, double c) {
-//        if ((a + b) > c || (a + c) > b || (b + c) > a) {
-//            double p = (a + b + c) / 2;
-//            double s = Math.sqrt(p * (p - a) * (p - b) * (p - c));
-//            System.out.println("Площадь треугольника = " + s);
-        //    return "Площадь треугольника = " + "1";
-//        }
-//        else
-//        return -1;
-        return 0;
+        if (ifTriangleExist(a, b, c)) {
+            return getTriangleSquare(a, b, c);
+        } else
+            return -1;
     }
 
     /**
@@ -45,11 +55,20 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать пустой массив нулевой длины.
      */
     static double[] getHeights(double a, double b, double c) {
-        //        Место для вашего кода
-
-        return null; // Заглушка. При реализации - удалить
+        double[] Heights = new double[3];
+        if (ifTriangleExist(a, b, c)) {
+            double square = getTriangleSquare(a, b, c);
+            double Ha = (2 * square) / a;
+            double Hb = (2 * square) / b;
+            double Hc = (2 * square) / c;
+            Heights[0] = Ha;
+            Heights[1] = Hb;
+            Heights[2] = Hc;
+            Arrays.sort(Heights);
+            return Heights;
+        } else
+            return new double[]{};
     }
-
     /**
      * Реализуйте метод, который будет возвращать медианы треугольника по возрастанию.
      *
@@ -58,9 +77,18 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать пустой массив нулевой длины.
      */
     static double[] getMedians(double a, double b, double c) {
-        //        Место для вашего кода
-
-        return null; // Заглушка. При реализации - удалить
+        double[] Medians = new double[3];
+        if (ifTriangleExist(a, b, c)) {
+            double Ma = 0.5 * (Math.sqrt((2 * b * b) + (2 * c * c) - (a * a)));
+            double Mb = 0.5 * (Math.sqrt((2 * a * a) + (2 * c * c) - (b * b)));
+            double Mc = 0.5 * (Math.sqrt((2 * a * a) + (2 * b * b) - (c * c)));
+            Medians[0] = Ma;
+            Medians[1] = Mb;
+            Medians[2] = Mc;
+            Arrays.sort(Medians);
+            return Medians;
+        } else
+            return new double[]{};
     }
 
     /**
@@ -71,11 +99,19 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать пустой массив нулевой длины.
      */
     static double[] getBisectors(double a, double b, double c) {
-        //        Место для вашего кода
-
-        return null; // Заглушка. При реализации - удалить
+        double[] Bisectors = new double[3];
+        if (ifTriangleExist(a, b, c)) {
+            double Ba = (Math.sqrt((b * c) * (b + c + a) * (b + c - a))) / (b + c);
+            double Bb = (Math.sqrt((a * c) * (a + c + b) * (a + c - b))) / (a + c);
+            double Bc = (Math.sqrt((a * b) * (a + b + c) * (a + b - c))) / (a + b);
+            Bisectors[0] = Ba;
+            Bisectors[1] = Bb;
+            Bisectors[2] = Bc;
+            Arrays.sort(Bisectors);
+            return Bisectors;
+        } else
+            return new double[]{};
     }
-
     /**
      * Реализуйте метод, который будет возвращать углы треугольника (в градусах) по возрастанию.
      *
@@ -84,11 +120,19 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать пустой массив нулевой длины.
      */
     static double[] getAngles(double a, double b, double c) {
-        //        Место для вашего кода
-
-        return null; // Заглушка. При реализации - удалить
+        double[] Angles = new double[3];
+        if (ifTriangleExist(a, b, c)) {
+            double COSa = ((b * b) + (c * c) - (a * a)) / (2 * b * c);
+            double COSb = ((a * a) + (c * c) - (b * b)) / (2 * a * c);
+            double COSg = ((a * a) + (b * b) - (c * c)) / (2 * a * b);
+            Angles[0] = Math.toDegrees(Math.acos(COSa));
+            Angles[1] = Math.toDegrees(Math.acos(COSb));
+            Angles[2] = Math.toDegrees(Math.acos(COSg));
+            Arrays.sort(Angles);
+            return Angles;
+        } else
+            return new double[]{};
     }
-
     /**
      * Реализуйте метод, который будет возвращать длину радиуса вписанной в треугольник окружности.
      *
@@ -97,9 +141,13 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static double getInscribedCircleRadius(double a, double b, double c) {
-        //        Место для вашего кода
-
-        return 0; // Заглушка. При реализации - удалить
+        if (ifTriangleExist(a, b, c)) {
+            double perimeter = getTrianglePerimeter(a, b, c);
+            double square = getTriangleSquare(a, b, c);
+            double rInt = square / perimeter;
+            return rInt;
+        }
+        return -1;
     }
 
     /**
@@ -110,11 +158,13 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static double getCircumradius(double a, double b, double c) {
-        //        Место для вашего кода
-
-        return 0; // Заглушка. При реализации - удалить
+        if (ifTriangleExist(a, b, c)) {
+            double square = getTriangleSquare(a, b, c);
+            double rOut = (a * b * c) / (4 * square);
+            return rOut;
+        } else
+            return -1;
     }
-
     /**
      * Дополнительная задача по желанию.
      *
