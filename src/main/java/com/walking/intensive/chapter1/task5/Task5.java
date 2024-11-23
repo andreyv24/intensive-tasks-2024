@@ -16,10 +16,7 @@ public class Task5 {
     }
 
     static boolean ifTriangleExist(double a, double b, double c) {
-        if ((a + b) > c && (a + c) > b && (b + c) > a) {
-            return true;
-        }
-        return false;
+        return  ((a + b) > c && (a + c) > b && (b + c) > a);
     }
 
     static double getTrianglePerimeter(double a, double b, double c) {
@@ -41,10 +38,12 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static double getAreaByHeron(double a, double b, double c) {
-        if (ifTriangleExist(a, b, c)) {
-            return getTriangleSquare(a, b, c);
-        } else
+        if (!ifTriangleExist(a, b, c)) {
             return -1;
+        }
+        {
+            return getTriangleSquare(a, b, c);
+        }
     }
 
     /**
@@ -55,20 +54,24 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать пустой массив нулевой длины.
      */
     static double[] getHeights(double a, double b, double c) {
-        double[] Heights = new double[3];
-        if (ifTriangleExist(a, b, c)) {
-            double square = getTriangleSquare(a, b, c);
-            double Ha = (2 * square) / a;
-            double Hb = (2 * square) / b;
-            double Hc = (2 * square) / c;
-            Heights[0] = Ha;
-            Heights[1] = Hb;
-            Heights[2] = Hc;
-            Arrays.sort(Heights);
-            return Heights;
-        } else
+        double[] heights = new double[3];
+        if (!ifTriangleExist(a, b, c)) {
             return new double[]{};
+        }
+        {
+            double square = getTriangleSquare(a, b, c);
+            double heightA = (2 * square) / a;
+            double heightB = (2 * square) / b;
+            double heightC = (2 * square) / c;
+
+            heights[0] = heightA;
+            heights[1] = heightB;
+            heights[2] = heightC;
+            Arrays.sort(heights);
+            return heights;
+        }
     }
+
     /**
      * Реализуйте метод, который будет возвращать медианы треугольника по возрастанию.
      *
@@ -77,18 +80,21 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать пустой массив нулевой длины.
      */
     static double[] getMedians(double a, double b, double c) {
-        double[] Medians = new double[3];
-        if (ifTriangleExist(a, b, c)) {
-            double Ma = 0.5 * (Math.sqrt((2 * b * b) + (2 * c * c) - (a * a)));
-            double Mb = 0.5 * (Math.sqrt((2 * a * a) + (2 * c * c) - (b * b)));
-            double Mc = 0.5 * (Math.sqrt((2 * a * a) + (2 * b * b) - (c * c)));
-            Medians[0] = Ma;
-            Medians[1] = Mb;
-            Medians[2] = Mc;
-            Arrays.sort(Medians);
-            return Medians;
-        } else
+        double[] medians = new double[3];
+        if (!ifTriangleExist(a, b, c)) {
             return new double[]{};
+        }
+        {
+            double medianA = 0.5 * (Math.sqrt((2 * b * b) + (2 * c * c) - (a * a)));
+            double medianB = 0.5 * (Math.sqrt((2 * a * a) + (2 * c * c) - (b * b)));
+            double medianC = 0.5 * (Math.sqrt((2 * a * a) + (2 * b * b) - (c * c)));
+
+            medians[0] = medianA;
+            medians[1] = medianB;
+            medians[2] = medianC;
+            Arrays.sort(medians);
+            return medians;
+        }
     }
 
     /**
@@ -99,19 +105,23 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать пустой массив нулевой длины.
      */
     static double[] getBisectors(double a, double b, double c) {
-        double[] Bisectors = new double[3];
-        if (ifTriangleExist(a, b, c)) {
-            double Ba = (Math.sqrt((b * c) * (b + c + a) * (b + c - a))) / (b + c);
-            double Bb = (Math.sqrt((a * c) * (a + c + b) * (a + c - b))) / (a + c);
-            double Bc = (Math.sqrt((a * b) * (a + b + c) * (a + b - c))) / (a + b);
-            Bisectors[0] = Ba;
-            Bisectors[1] = Bb;
-            Bisectors[2] = Bc;
-            Arrays.sort(Bisectors);
-            return Bisectors;
-        } else
+        double[] bisectors = new double[3];
+        if (!ifTriangleExist(a, b, c)) {
             return new double[]{};
+        }
+        {
+            double bisectorA = (Math.sqrt((b * c) * (b + c + a) * (b + c - a))) / (b + c);
+            double bisectorB = (Math.sqrt((a * c) * (a + c + b) * (a + c - b))) / (a + c);
+            double bisectorC = (Math.sqrt((a * b) * (a + b + c) * (a + b - c))) / (a + b);
+
+            bisectors[0] = bisectorA;
+            bisectors[1] = bisectorB;
+            bisectors[2] = bisectorC;
+            Arrays.sort(bisectors);
+            return bisectors;
+        }
     }
+
     /**
      * Реализуйте метод, который будет возвращать углы треугольника (в градусах) по возрастанию.
      *
@@ -120,19 +130,23 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать пустой массив нулевой длины.
      */
     static double[] getAngles(double a, double b, double c) {
-        double[] Angles = new double[3];
-        if (ifTriangleExist(a, b, c)) {
-            double COSa = ((b * b) + (c * c) - (a * a)) / (2 * b * c);
-            double COSb = ((a * a) + (c * c) - (b * b)) / (2 * a * c);
-            double COSg = ((a * a) + (b * b) - (c * c)) / (2 * a * b);
-            Angles[0] = Math.toDegrees(Math.acos(COSa));
-            Angles[1] = Math.toDegrees(Math.acos(COSb));
-            Angles[2] = Math.toDegrees(Math.acos(COSg));
-            Arrays.sort(Angles);
-            return Angles;
-        } else
+        double[] angles = new double[3];
+        if (!ifTriangleExist(a, b, c)) {
             return new double[]{};
+        }
+        {
+            double cosA = ((b * b) + (c * c) - (a * a)) / (2 * b * c);
+            double cosB = ((a * a) + (c * c) - (b * b)) / (2 * a * c);
+            double cosG = ((a * a) + (b * b) - (c * c)) / (2 * a * b);
+
+            angles[0] = Math.toDegrees(Math.acos(cosA));
+            angles[1] = Math.toDegrees(Math.acos(cosB));
+            angles[2] = Math.toDegrees(Math.acos(cosG));
+            Arrays.sort(angles);
+            return angles;
+        }
     }
+
     /**
      * Реализуйте метод, который будет возвращать длину радиуса вписанной в треугольник окружности.
      *
@@ -141,13 +155,15 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static double getInscribedCircleRadius(double a, double b, double c) {
-        if (ifTriangleExist(a, b, c)) {
+        if (!ifTriangleExist(a, b, c)) {
+            return -1;
+        }
+        {
             double perimeter = getTrianglePerimeter(a, b, c);
             double square = getTriangleSquare(a, b, c);
-            double rInt = square / perimeter;
-            return rInt;
+            double rIntRadius = square / perimeter;
+            return rIntRadius;
         }
-        return -1;
     }
 
     /**
@@ -158,12 +174,14 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static double getCircumradius(double a, double b, double c) {
-        if (ifTriangleExist(a, b, c)) {
-            double square = getTriangleSquare(a, b, c);
-            double rOut = (a * b * c) / (4 * square);
-            return rOut;
-        } else
+        if (!ifTriangleExist(a, b, c)) {
             return -1;
+        }
+        {
+            double square = getTriangleSquare(a, b, c);
+            double rOutRadius = (a * b * c) / (4 * square);
+            return rOutRadius;
+        }
     }
     /**
      * Дополнительная задача по желанию.
@@ -181,7 +199,6 @@ public class Task5 {
      */
     static double getAreaAdvanced(double a, double b, double c) {
         //        Место для вашего кода
-
         return 0; // Заглушка. При реализации - удалить
     }
 }
