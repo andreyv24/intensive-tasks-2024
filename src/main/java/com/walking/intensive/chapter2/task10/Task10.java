@@ -14,8 +14,37 @@ public class Task10 {
 //        Для собственных проверок можете делать любые изменения в этом методе
     }
 
+    static boolean checkInputGarbage(String inString) {
+        return (inString == null || inString.length() < 2);
+    }
+
     static boolean isPalindrome(String inputString) {
-        // Ваш код
-        return false;
+
+        if (checkInputGarbage(inputString) == true) {
+            return false;
+        }
+
+        String tempString = inputString.toLowerCase();
+        StringBuilder strBuilderTemp = new StringBuilder(tempString);
+        StringBuilder strBuilderFinal = new StringBuilder();
+
+        for (int i = 0; i <= (inputString.length() - 1); i++) {
+            if (strBuilderTemp.charAt(i) == ' ' || strBuilderTemp.charAt(i) == ',' || strBuilderTemp.charAt(i) == '?' || strBuilderTemp.charAt(i) == '!' || strBuilderTemp.charAt(i) == '-') {
+                continue;
+            }
+            strBuilderFinal.append(strBuilderTemp.charAt(i));
+        }
+
+        String noSpaceLowcaseNomarks = strBuilderFinal.toString();
+        int i = 0;
+        int j = (noSpaceLowcaseNomarks.length() - 1);
+        while (i < j) {
+            if (noSpaceLowcaseNomarks.charAt(i) != noSpaceLowcaseNomarks.charAt(j)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
     }
 }
