@@ -20,10 +20,16 @@ public class Task6 {
      */
     static int getLcm(int m, int n) {
         if (ifNumbersNegative(m, n)) {
+
             return -1;
         }
+        int findNok = Math.max(m, n);
+        while (findNok % Math.min(m, n) != 0) {
+            findNok = findNok + Math.max(m, n);
+        }
 
-        return (m * n) / getGcd(m, n);
+        return findNok;
+//        return (m * n) / getGcd(m, n); альтернативный вариант.
     }
 
     /**
