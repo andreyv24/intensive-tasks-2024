@@ -202,7 +202,7 @@ public class Task5 {
         }
 
         double cosA = (a * a + b * b - c * c) / (2 * a * b);
-        double square = (0.5 * a * b) * Math.sqrt((1 - (cosA * cosA)));
+        double square = (0.5 * a * b) * Math.sqrt((1 - (cosA * cosA)) );
         return square;
     }
 }
