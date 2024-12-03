@@ -41,18 +41,18 @@ public class Task8 {
                 if (leftDigits == rightDigits) {
                     getEquality++;
                 }
-                {
-                    if (j < 10) {
-                        rightDigits = (j % 10);
-                    } else if (j < 99) {
-                        rightDigits = j / 10 + (j % 10);
-                    } else {
-                        rightDigits = j / 100 + (j % 100) / 10 + (j % 10);
-                    }
+
+                if (j < 10) {
+                    rightDigits = (j % 10);
+                } else if (j < 99) {
+                    rightDigits = j / 10 + (j % 10);
+                } else {
+                    rightDigits = j / 100 + (j % 100) / 10 + (j % 10);
                 }
+
             }
         }
-
-        return getProbability = getEquality / (999999 + 1);
+        System.out.println(getEquality / (1000000));
+        return getProbability = getEquality / (1000000);
     }
 }
