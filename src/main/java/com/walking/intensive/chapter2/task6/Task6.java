@@ -10,9 +10,6 @@ public class Task6 {
     public static void main(String[] args) {
 //        Для собственных проверок можете делать любые изменения в этом методе
     }
-    static boolean ifNumbersNegative(int m, int n) {
-        return  ((n <= 0) || (m <=0));
-    }
 
     /**
      * Реализуйте метод, который будет возвращать НОК для чисел, переданных параметрами.
@@ -25,10 +22,8 @@ public class Task6 {
         if (ifNumbersNegative(m, n)) {
             return -1;
         }
-        {
-            int findNok = (m * n) / getGcd(m, n);
-            return findNok;
-        }
+
+            return  (m * n) / getGcd(m, n);
     }
 
     /**
@@ -43,13 +38,12 @@ public class Task6 {
             return -1;
         }
         int findNod = Math.min(m, n);
-        while (findNod >= 1) {
-            if (n % findNod == 0 & m % findNod == 0) {
-                break;
-            }
+
+        while (n % findNod != 0 | m % findNod != 0) {
             findNod--;
         }
         return findNod;
+
     }
 
     /**
@@ -76,4 +70,9 @@ public class Task6 {
         } while (m != n);
         return m;
     }
+
+    static boolean ifNumbersNegative(int m, int n) {
+        return  (n <= 0 || m <= 0);
+
+}
 }
