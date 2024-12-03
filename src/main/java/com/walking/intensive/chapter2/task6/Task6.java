@@ -23,7 +23,7 @@ public class Task6 {
             return -1;
         }
 
-            return  (m * n) / getGcd(m, n);
+        return (m * n) / getGcd(m, n);
     }
 
     /**
@@ -35,6 +35,7 @@ public class Task6 {
      */
     static int getGcd(int m, int n) {
         if (ifNumbersNegative(m, n)) {
+
             return -1;
         }
         int findNod = Math.min(m, n);
@@ -42,8 +43,8 @@ public class Task6 {
         while (n % findNod != 0 | m % findNod != 0) {
             findNod--;
         }
-        return findNod;
 
+        return findNod;
     }
 
     /**
@@ -56,23 +57,25 @@ public class Task6 {
      */
     static int getGcdByEuclideanAlgorithm(int m, int n) {
         if (ifNumbersNegative(m, n)) {
+
             return -1;
         }
-        do {
-            if (m == n) {
-                break;
-            }
-            if (m > n) {
-                m = m - n;
-            } else {
-                n = n - m;
-            }
-        } while (m != n);
-        return m;
+
+        if (m == n) {
+
+            return m;
+        }
+
+        if (m > n) {
+
+            return getGcdByEuclideanAlgorithm(m - n, n);
+        }
+
+            return getGcdByEuclideanAlgorithm(m, n - m);
     }
 
     static boolean ifNumbersNegative(int m, int n) {
-        return  (n <= 0 || m <= 0);
 
-}
+        return (n <= 0 || m <= 0);
+    }
 }
