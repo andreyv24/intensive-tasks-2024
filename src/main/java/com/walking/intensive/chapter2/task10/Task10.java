@@ -31,36 +31,20 @@ public class Task10 {
             }
         }
         String noSpaceLowcaseNomarks = strBuilderFinal.toString();
-        System.out.print("\n");
-        System.out.print("noSpaceLowcaseNomarks = " + noSpaceLowcaseNomarks);
-        System.out.print("\n");
-        StringBuilder sb = new StringBuilder(noSpaceLowcaseNomarks);
-        System.out.print("sb = " + sb);
-        sb.reverse();
-        String reversedStr = sb.toString();
-        System.out.print("\n");
-        System.out.print("reversedStr = " + reversedStr);
-        System.out.print("\n");
+        int i = 0;
+        int j = (noSpaceLowcaseNomarks.length() - 1);
+        while (i < j) {
+            if (noSpaceLowcaseNomarks.charAt(i) != noSpaceLowcaseNomarks.charAt(j)) {
 
-        if (noSpaceLowcaseNomarks != reversedStr) {
-            System.out.print("========= ЛОЖЬ ===========");
-        } else
-            System.out.print("========= ПРАВДА ===========");
+                return false;
+            }
+            i++;
+            j--;
+        }
+
         return true;
-
-//        String noSpaceLowcaseNomarks = strBuilderFinal.toString();
-//        int i = 0;
-//        int j = (noSpaceLowcaseNomarks.length() - 1);
-//        while (i < j) {
-//            if (noSpaceLowcaseNomarks.charAt(i) != noSpaceLowcaseNomarks.charAt(j)) {
-
-//                return false;
-//            }
-//            i++;
-//            j--;
-//        }
-//            return true;
     }
+
 
     static boolean isStringValid(String inString) {
 
