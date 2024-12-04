@@ -14,13 +14,10 @@ public class Task10 {
 //        Для собственных проверок можете делать любые изменения в этом методе
     }
 
-    static boolean checkInputGarbage(String inString) {
-        return (inString == null || inString.length() < 2);
-    }
-
     static boolean isPalindrome(String inputString) {
 
-        if (checkInputGarbage(inputString) == true) {
+        if (isStringValid(inputString)) {
+
             return false;
         }
 
@@ -29,22 +26,44 @@ public class Task10 {
         StringBuilder strBuilderFinal = new StringBuilder();
 
         for (int i = 0; i <= (inputString.length() - 1); i++) {
-            if (strBuilderTemp.charAt(i) == ' ' || strBuilderTemp.charAt(i) == ',' || strBuilderTemp.charAt(i) == '?' || strBuilderTemp.charAt(i) == '!' || strBuilderTemp.charAt(i) == '-') {
-                continue;
+            if (strBuilderTemp.charAt(i) >= 'а' && strBuilderTemp.charAt(i) <= 'я') {
+                strBuilderFinal.append(strBuilderTemp.charAt(i));
             }
-            strBuilderFinal.append(strBuilderTemp.charAt(i));
         }
-
         String noSpaceLowcaseNomarks = strBuilderFinal.toString();
-        int i = 0;
-        int j = (noSpaceLowcaseNomarks.length() - 1);
-        while (i < j) {
-            if (noSpaceLowcaseNomarks.charAt(i) != noSpaceLowcaseNomarks.charAt(j)) {
-                return false;
-            }
-            i++;
-            j--;
-        }
+        System.out.print("\n");
+        System.out.print("noSpaceLowcaseNomarks = " + noSpaceLowcaseNomarks);
+        System.out.print("\n");
+        StringBuilder sb = new StringBuilder(noSpaceLowcaseNomarks);
+        System.out.print("sb = " + sb);
+        sb.reverse();
+        String reversedStr = sb.toString();
+        System.out.print("\n");
+        System.out.print("reversedStr = " + reversedStr);
+        System.out.print("\n");
+
+        if (noSpaceLowcaseNomarks != reversedStr) {
+            System.out.print("========= ЛОЖЬ ===========");
+        } else
+            System.out.print("========= ПРАВДА ===========");
         return true;
+
+//        String noSpaceLowcaseNomarks = strBuilderFinal.toString();
+//        int i = 0;
+//        int j = (noSpaceLowcaseNomarks.length() - 1);
+//        while (i < j) {
+//            if (noSpaceLowcaseNomarks.charAt(i) != noSpaceLowcaseNomarks.charAt(j)) {
+
+//                return false;
+//            }
+//            i++;
+//            j--;
+//        }
+//            return true;
+    }
+
+    static boolean isStringValid(String inString) {
+
+        return (inString == null || inString.length() < 2 || inString == "");
     }
 }
