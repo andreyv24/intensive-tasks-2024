@@ -69,10 +69,8 @@ public class Task11 {
             if (array[i] < 0) {
                 return -1;
             }
-
-            int elementCounterInOddSubarrays = 0;
             int elementCounterInSubarrays = ((array.length - i) * (i + 1));
-            elementCounterInOddSubarrays = (elementCounterInSubarrays + 1) / 2;
+            int elementCounterInOddSubarrays = (elementCounterInSubarrays + 1) / 2;
             sumElementsSubarray = sumElementsSubarray + elementCounterInOddSubarrays * array[i];
             i++;
         }
