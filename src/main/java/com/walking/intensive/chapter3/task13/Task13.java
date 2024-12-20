@@ -65,7 +65,7 @@ public class Task13 {
             }
             counter++;
             if (currentWateringCanVolume < plants[i]) {
-                counter = counter + 2 * (i);
+                counter += 2 * (i);
                 currentWateringCanVolume = wateringCanVolume - plants[i];
                 continue;
             }
