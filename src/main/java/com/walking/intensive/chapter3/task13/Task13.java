@@ -54,23 +54,38 @@ public class Task13 {
     }
 
     static int getStepsCount(int[] plants, int wateringCanVolume) {
-        if (plants == null || wateringCanVolume <= 0) {
+
+        if (!checkInputData(plants, wateringCanVolume)) {
             return -1;
         }
+
         int counter = 0;
         int currentWateringCanVolume = wateringCanVolume;
+
         for (int i = 0; i < plants.length; i++) {
-            if (plants[i] <= 0) {
-                return -1;
-            }
             counter++;
             if (currentWateringCanVolume < plants[i]) {
-                counter = counter + 2 * (i);
+                counter += 2 * (i);
                 currentWateringCanVolume = wateringCanVolume - plants[i];
-                continue;
+            } else {
+                currentWateringCanVolume = currentWateringCanVolume - plants[i];
             }
-            currentWateringCanVolume = currentWateringCanVolume - plants[i];
         }
+
         return counter;
+    }
+
+    static boolean checkInputData(int[] plants, int wateringCanVolume) {
+        if (wateringCanVolume <= 0) {
+            return false;
+        }
+
+        for (int plant : plants) {
+            if (plant <= 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
