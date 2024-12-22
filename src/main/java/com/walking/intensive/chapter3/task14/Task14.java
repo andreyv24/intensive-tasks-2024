@@ -1,5 +1,7 @@
 package com.walking.intensive.chapter3.task14;
 
+import java.util.Arrays;
+
 /**
  * Необходимо разработать программу, которая определяет количество объектов на радарах.
  *
@@ -32,7 +34,7 @@ package com.walking.intensive.chapter3.task14;
  * <ul>
  * <li>objectCounts[0] = 3, потому что радар с координатами (2;3) и радиусом действия 1 видит объекты с координатами
  * (1;3), (2;2) и (3;3). Всего 3 объекта.
- *</ul>
+ * </ul>
  *
  * <p>При наличии некорректных входных данных верните из метода пустой массив.
  *
@@ -43,11 +45,49 @@ package com.walking.intensive.chapter3.task14;
  */
 public class Task14 {
     public static void main(String[] args) {
-//        Для собственных проверок можете делать любые изменения в этом методе
+//        int[][] obj = {
+//                {1, 3},
+//                {3, 3},
+//                {5, 3},
+//                {2, 2}};
+//        int[][] radar = {
+//                {1, 3, 1},
+//                {4, 3, 1},
+//                {1, 1, 2}};
+//        System.out.println("== Объекты ==");
+//        printArray(obj);
+//        System.out.println("== Радары ==");
+//        printArray(radar);
+//        System.out.println("== Объекты на Радарах ==");
+//        getObjectCounts(obj, radar);
     }
 
+//    static void printArray(int[][] array) {
+//        for (int[] rows : array) {
+//            for (int elements : rows) {
+//                System.out.print(elements + " ");
+//            }
+//            System.out.println();
+//        }
+//    }
+
     static int[] getObjectCounts(int[][] objectLocations, int[][] radars) {
-        // Ваш код
-        return new int[0];
+        int objectCounts[] = new int[radars.length];
+        for (int j = 0; j < radars.length; j++) {
+            if (radars[j].length != 3 || radars[j][2] <= 0) {
+                return new int[0];
+            }
+            int counter = 0;
+            for (int[] objectLocation : objectLocations) {
+                if (objectLocation.length != 2) {
+                    return new int[0];
+                }
+                if ((Math.pow(objectLocation[0] - radars[j][0], 2) + Math.pow(objectLocation[1] - radars[j][1], 2)) <= Math.pow(radars[j][2], 2)) {
+                    counter++;
+                }
+                objectCounts[j] = counter;
+            }
+        }
+        return objectCounts;
     }
 }
