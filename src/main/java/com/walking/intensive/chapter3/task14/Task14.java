@@ -72,7 +72,7 @@ public class Task14 {
 //    }
 
     static int[] getObjectCounts(int[][] objectLocations, int[][] radars) {
-        int objectCounts[] = new int[radars.length];
+        int[] objectCounts = new int[radars.length];
         for (int j = 0; j < radars.length; j++) {
             if (radars[j].length != 3 || radars[j][2] <= 0) {
                 return new int[0];
