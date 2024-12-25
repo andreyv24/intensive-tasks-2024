@@ -63,15 +63,19 @@ public class Task11 {
     }
 
     static int getOddSubArraysElementsSum(int[] array) {
+
         int subArraysElementsSum = 0;
+
         for (int i = 0; i < array.length; i++) {
             if (array[i] < 0) {
                 return -1;
             }
+
             int subArraysElementsCounter = ((array.length - i) * (i + 1));
             int oddSubArraysElementCounter = (subArraysElementsCounter + 1) / 2;
             subArraysElementsSum += oddSubArraysElementCounter * array[i];
         }
+
         return subArraysElementsSum;
     }
 }
