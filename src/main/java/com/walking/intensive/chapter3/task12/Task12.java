@@ -45,7 +45,6 @@ public class Task12 {
 //        Arrays.toString(getMovementsNumber("1!0"));
 //        Arrays.toString(getMovementsNumber("111102"));
 //        Arrays.toString(getMovementsNumber(".kjl"));
-//        Arrays.toString(getMovementsNumber("10"));
 //        Arrays.toString(getMovementsNumber("01"));
 //        Arrays.toString(getMovementsNumber("001"));
 //        Arrays.toString(getMovementsNumber("101"));
