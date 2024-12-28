@@ -1,5 +1,7 @@
 package com.walking.intensive.chapter3.task12;
 
+import java.util.Arrays;
+
 /**
  * Девочка Света очень любит играть в мячики. Она поставила в ряд корзинки и в некоторые положила по 1 мячику.
  * За 1 раз она может переложить 1 мячик в соседнюю корзинку. В 1 корзинке может поместиться много мячиков.
@@ -39,12 +41,49 @@ package com.walking.intensive.chapter3.task12;
  * <p><a href="https://github.com/KFalcon2022/intensive-tasks-2024/blob/master/README.md">Требования к оформлению</a>
  */
 public class Task12 {
-    public static void main(String[] args) {
-//        Для собственных проверок можете делать любые изменения в этом методе
+    public static void main(String[] args) {//
+//        Arrays.toString(getMovementsNumber("1!0"));
+//        Arrays.toString(getMovementsNumber("111102"));
+//        Arrays.toString(getMovementsNumber(".kjl"));
+//        Arrays.toString(getMovementsNumber("10"));
+//        Arrays.toString(getMovementsNumber("01"));
+//        Arrays.toString(getMovementsNumber("001"));
+//        Arrays.toString(getMovementsNumber("101"));
+//        Arrays.toString(getMovementsNumber("111"));
+//        Arrays.toString(getMovementsNumber("1010"));
     }
 
     static int[] getMovementsNumber(String baskets) {
-        // Ваш код
-        return new int[]{};
+        if (!checkInputData(baskets)) {
+            return new int[]{};
+        }
+        int[] arr = new int[baskets.length()];
+
+        for (int i = 0; i < baskets.length(); i++) {
+            int allBallsMovementCounter = 0;
+
+            for (int j = 0; j < baskets.length(); j++) {
+                int oneBasketBallMovementCounter = 0;
+
+                if (j != i & baskets.charAt(j) == '1') {
+                    oneBasketBallMovementCounter = Math.abs(j - i);
+                }
+                allBallsMovementCounter = allBallsMovementCounter + oneBasketBallMovementCounter;
+            }
+            arr[i] = allBallsMovementCounter;
+        }
+//        System.out.println(Arrays.toString(arr));
+        return arr;
+    }
+
+    static boolean checkInputData(String baskets) {
+
+        for (int i = 0; i < baskets.length(); i++) {
+
+            if (baskets.charAt(i) != '0' & baskets.charAt(i) != '1') {
+                return false;
+            }
+        }
+        return true;
     }
 }
