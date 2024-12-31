@@ -44,7 +44,88 @@ public class Task15 {
     }
 
     static int getMaxFloors(int[][] city) {
-        // Ваш код
-        return 0;
+        if (!checkInputData(city)) {
+            return -1;
+        }
+
+        int northsMaxElement = getRowsMaxHeightBuilding(city,0,city.length);
+        int eastsMaxElement = getColumnsMaxHeightBuilding(city, city.length,city.length - 1);
+        int southsMaxElement = getRowsMaxHeightBuilding(city,city.length - 1, city.length);
+        int westsMaxElement = getColumnsMaxHeightBuilding(city, city.length - 1 ,0);
+        int numberCompletedFloors = 0;
+
+        numberCompletedFloors = getRowsNumberCompletedFloors(city, 0, city.length, westsMaxElement, northsMaxElement, eastsMaxElement);
+        numberCompletedFloors += getColumnNumberCompletedFloors(city, city.length - 1, city.length - 1, eastsMaxElement);
+        numberCompletedFloors += getRowsNumberCompletedFloors(city, city.length - 1, 0, westsMaxElement, southsMaxElement, eastsMaxElement);
+        numberCompletedFloors += getColumnNumberCompletedFloors(city, 0, city.length - 1, westsMaxElement);
+
+        return numberCompletedFloors;
+    }
+
+    static boolean checkInputData(int[][] city) {
+        if (city.length == 0) {
+            return false;
+        }
+
+        for (int[] row : city) {
+            if (row.length == 0) {
+                return false;
+            }
+
+            for (int element : row) {
+                if (city.length != row.length || element < 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    static int getRowsMaxHeightBuilding(int[][] city, int row, int column) {
+        int maxHeightBuilding = 0;
+
+        for (int j = 0; j < column; j++) {
+            if (city[row][j] > maxHeightBuilding) {
+                maxHeightBuilding = city[row][j];
+            }
+        }
+        return maxHeightBuilding;
+    }
+
+    static int getColumnsMaxHeightBuilding(int[][] city, int row, int column) {
+        int maxHeightBuilding = 0;
+
+        for (int i = 0; i < row; i++) {
+            if (city[i][column] > maxHeightBuilding) {
+                maxHeightBuilding = city[i][column];
+            }
+        }
+        return maxHeightBuilding;
+    }
+
+    static int getRowsNumberCompletedFloors(int[][] city, int row, int column, int maxLeftColumnElement, int maxRowElement, int maxRightColumnElement) {
+        int rowsNumberCompletedFloors = 0;
+
+        for (int j = 0; j < city[row].length; j++) {
+            if (j == 0) {
+                rowsNumberCompletedFloors = rowsNumberCompletedFloors + (Math.min(maxLeftColumnElement, maxRowElement) - city[row][0]);
+                continue;
+            }
+            if (j == column - 1) {
+                rowsNumberCompletedFloors = rowsNumberCompletedFloors + (Math.min(maxRowElement, maxRightColumnElement) - city[row][column - 1]);
+                continue;
+            }
+            rowsNumberCompletedFloors = rowsNumberCompletedFloors + (maxRowElement - city[row][j]);
+        }
+        return rowsNumberCompletedFloors;
+    }
+
+    static int getColumnNumberCompletedFloors(int[][] city, int row, int column, int maxColumnElement) {
+        int columnNumberCompletedFloors = 0;
+
+        for (int i = 1; i < column; i++) {
+            columnNumberCompletedFloors = columnNumberCompletedFloors + (maxColumnElement - city[i][row]);
+        }
+        return columnNumberCompletedFloors;
     }
 }
