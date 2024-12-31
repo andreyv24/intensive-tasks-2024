@@ -52,7 +52,7 @@ public class Task15 {
         int eastsMaxElement = getColumnsMaxHeightBuilding(city, city.length,city.length - 1);
         int southsMaxElement = getRowsMaxHeightBuilding(city,city.length - 1, city.length);
         int westsMaxElement = getColumnsMaxHeightBuilding(city, city.length - 1 ,0);
-        int numberCompletedFloors = 0;
+        int numberCompletedFloors;
 
         numberCompletedFloors = getRowsNumberCompletedFloors(city, 0, city.length, westsMaxElement, northsMaxElement, eastsMaxElement);
         numberCompletedFloors += getColumnNumberCompletedFloors(city, city.length - 1, city.length - 1, eastsMaxElement);
