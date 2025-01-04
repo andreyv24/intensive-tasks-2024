@@ -73,21 +73,25 @@ public class Task14 {
 
     static int[] getObjectCounts(int[][] objectLocations, int[][] radars) {
         int[] objectCounts = new int[radars.length];
-        for (int j = 0; j < radars.length; j++) {
-            if (radars[j].length != 3 || radars[j][2] <= 0) {
+
+        for (int i = 0; i < radars.length; i++) {
+            if (radars[i].length != 3 || radars[i][2] <= 0) {
                 return new int[0];
             }
+
             int counter = 0;
             for (int[] objectLocation : objectLocations) {
                 if (objectLocation.length != 2) {
                     return new int[0];
                 }
-                if ((Math.pow(objectLocation[0] - radars[j][0], 2) + Math.pow(objectLocation[1] - radars[j][1], 2)) <= Math.pow(radars[j][2], 2)) {
+                if ((Math.pow(objectLocation[0] - radars[i][0], 2) + Math.pow(objectLocation[1] - radars[i][1], 2))
+                        <= Math.pow(radars[i][2], 2)) {
                     counter++;
                 }
-                objectCounts[j] = counter;
+                objectCounts[i] = counter;
             }
         }
+
         return objectCounts;
     }
 }
