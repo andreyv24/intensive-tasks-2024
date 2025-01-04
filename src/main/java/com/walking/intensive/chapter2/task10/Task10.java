@@ -15,9 +15,7 @@ public class Task10 {
     }
 
     static boolean isPalindrome(String inputString) {
-
-        if (isStringValid(inputString)) {
-
+        if (isStringNotValid(inputString)) {
             return false;
         }
 
@@ -25,29 +23,21 @@ public class Task10 {
         StringBuilder strBuilderTemp = new StringBuilder(tempString);
         StringBuilder strBuilderFinal = new StringBuilder();
 
-        for (int i = 0; i <= (inputString.length() - 1); i++) {
+        for (int i = 0; i < inputString.length(); i++) {
             if (strBuilderTemp.charAt(i) >= 'а' && strBuilderTemp.charAt(i) <= 'я') {
                 strBuilderFinal.append(strBuilderTemp.charAt(i));
             }
         }
-        String noSpaceLowcaseNomarks = strBuilderFinal.toString();
-        int i = 0;
-        int j = (noSpaceLowcaseNomarks.length() - 1);
-        while (i < j) {
-            if (noSpaceLowcaseNomarks.charAt(i) != noSpaceLowcaseNomarks.charAt(j)) {
 
-                return false;
-            }
-            i++;
-            j--;
-        }
+        String noSpaceLowcaseNoMarks = strBuilderFinal.toString();
+        StringBuilder sb = new StringBuilder(noSpaceLowcaseNoMarks);
+        sb.reverse();
+        String reversedStr = sb.toString();
 
-        return true;
+        return noSpaceLowcaseNoMarks.equals(reversedStr);
     }
 
-
-    static boolean isStringValid(String inString) {
-
-        return (inString == null || inString.length() < 2 || inString == "");
+    static boolean isStringNotValid(String inString) {
+        return inString == null || inString.length() < 2;
     }
 }
