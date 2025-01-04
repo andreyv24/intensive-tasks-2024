@@ -50,12 +50,11 @@ package com.walking.intensive.chapter3.task13;
 public class Task13 {
     public static void main(String[] args) {
 //        getStepsCount(new int[]{1, 1, 1, 4, 2, 3}, 4);
-
     }
 
     static int getStepsCount(int[] plants, int wateringCanVolume) {
 
-        if (!checkInputData(plants, wateringCanVolume)) {
+        if (!ifInputDataCorrect(plants, wateringCanVolume)) {
             return -1;
         }
 
@@ -68,14 +67,14 @@ public class Task13 {
                 counter += 2 * (i);
                 currentWateringCanVolume = wateringCanVolume - plants[i];
             } else {
-                currentWateringCanVolume = currentWateringCanVolume - plants[i];
+                currentWateringCanVolume -= plants[i];
             }
         }
 
         return counter;
     }
 
-    static boolean checkInputData(int[] plants, int wateringCanVolume) {
+    static boolean ifInputDataCorrect(int[] plants, int wateringCanVolume) {
         if (wateringCanVolume <= 0) {
             return false;
         }
