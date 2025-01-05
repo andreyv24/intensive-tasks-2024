@@ -53,7 +53,6 @@ public class Task13 {
     }
 
     static int getStepsCount(int[] plants, int wateringCanVolume) {
-
         if (!ifInputDataCorrect(plants, wateringCanVolume)) {
             return -1;
         }
