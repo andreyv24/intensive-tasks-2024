@@ -27,11 +27,35 @@ package com.walking.intensive.chapter2.task7;
  */
 public class Task7 {
     public static void main(String[] args) {
-//        Для собственных проверок можете делать любые изменения в этом методе
+//        getSumDividers(284);
+//        getFriendlyPair(284);
+//        getFriendlyPair(7000);
+//        getFriendlyPair(50000);
     }
 
     static int getFriendlyPair(int n) {
-        // Ваш код
-        return 0;
+        if (n < 1 || n > 1000000) {
+            return -1;
+        }
+
+        int maxFriendlyNumber = 0;
+        for (int i = 1; i < n; i++) {
+            if ((i == getSumDividers(getSumDividers(i))) && (i != getSumDividers(i))) {
+                maxFriendlyNumber = Math.max(maxFriendlyNumber,i);
+            }
+        }
+
+        return maxFriendlyNumber;
+    }
+
+    static int getSumDividers(int tempValue) {
+        int sumDividers = 1;
+        for (int i = 2; i < tempValue ; i++) {
+            if (tempValue % i == 0) {
+                sumDividers += i;
+            }
+        }
+
+        return sumDividers;
     }
 }
