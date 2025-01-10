@@ -52,12 +52,13 @@ public class Task15 {
         int eastsMaxElement = getColumnsMaxHeightBuilding(city, city.length,city.length - 1);
         int southsMaxElement = getRowsMaxHeightBuilding(city,city.length - 1, city.length);
         int westsMaxElement = getColumnsMaxHeightBuilding(city, city.length - 1 ,0);
-        int numberCompletedFloors;
 
-        numberCompletedFloors = getRowsNumberCompletedFloors(city, 0, city.length, westsMaxElement, northsMaxElement, eastsMaxElement);
-        numberCompletedFloors += getColumnNumberCompletedFloors(city, city.length - 1, city.length - 1, eastsMaxElement);
-        numberCompletedFloors += getRowsNumberCompletedFloors(city, city.length - 1, 0, westsMaxElement, southsMaxElement, eastsMaxElement);
-        numberCompletedFloors += getColumnNumberCompletedFloors(city, 0, city.length - 1, westsMaxElement);
+        int numberCompletedFloors = getRowsNumberCompletedFloors(city, 0, city.length,
+                                                                westsMaxElement, northsMaxElement, eastsMaxElement)
+                + getColumnNumberCompletedFloors(city, city.length - 1, city.length - 1, eastsMaxElement)
+                + getRowsNumberCompletedFloors(city, city.length - 1, 0,
+                                              westsMaxElement, southsMaxElement, eastsMaxElement)
+                + getColumnNumberCompletedFloors(city, 0, city.length - 1, westsMaxElement);
 
         return numberCompletedFloors;
     }
@@ -103,19 +104,20 @@ public class Task15 {
         return maxHeightBuilding;
     }
 
-    static int getRowsNumberCompletedFloors(int[][] city, int row, int column, int maxLeftColumnElement, int maxRowElement, int maxRightColumnElement) {
+    static int getRowsNumberCompletedFloors(int[][] city, int row, int column,
+                                           int maxLeftColumnElement, int maxRowElement, int maxRightColumnElement) {
         int rowsNumberCompletedFloors = 0;
 
         for (int j = 0; j < city[row].length; j++) {
             if (j == 0) {
-                rowsNumberCompletedFloors = rowsNumberCompletedFloors + (Math.min(maxLeftColumnElement, maxRowElement) - city[row][0]);
+                rowsNumberCompletedFloors += (Math.min(maxLeftColumnElement, maxRowElement) - city[row][0]);
                 continue;
             }
             if (j == column - 1) {
-                rowsNumberCompletedFloors = rowsNumberCompletedFloors + (Math.min(maxRowElement, maxRightColumnElement) - city[row][column - 1]);
+                rowsNumberCompletedFloors += (Math.min(maxRowElement, maxRightColumnElement) - city[row][column - 1]);
                 continue;
             }
-            rowsNumberCompletedFloors = rowsNumberCompletedFloors + (maxRowElement - city[row][j]);
+            rowsNumberCompletedFloors += (maxRowElement - city[row][j]);
         }
         return rowsNumberCompletedFloors;
     }
