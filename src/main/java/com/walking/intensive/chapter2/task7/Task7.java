@@ -50,7 +50,7 @@ public class Task7 {
 
     static int getSumDividers(int tempValue) {
         int sumDividers = 1;
-        for (int i = 2; i < tempValue ; i++) {
+        for (int i = 2; i < tempValue; i++) {
             if (tempValue % i == 0) {
                 sumDividers += i;
             }
