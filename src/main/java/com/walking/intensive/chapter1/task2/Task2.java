@@ -48,12 +48,12 @@ public class Task2 {
 
         int entranceNumber = (flatNumber / (floorAmount * 4));
         if ((flatNumber % (floorAmount * 4)) != 0) {
-            entranceNumber += 1;
+            entranceNumber++;
         }
 
         int floorNumber = (flatNumber - ((floorAmount * 4) * (entranceNumber - 1))) / 4;
         if (((flatNumber - ((floorAmount * 4) * (entranceNumber - 1))) % 4) != 0) {
-            floorNumber += 1;
+            floorNumber++;
         }
 
         int maxNumberFlatPerFloor = ((entranceNumber - 1) * floorAmount * 4) + floorNumber * 4;
