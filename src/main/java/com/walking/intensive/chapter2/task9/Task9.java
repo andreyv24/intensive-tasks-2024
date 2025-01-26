@@ -51,11 +51,52 @@ package com.walking.intensive.chapter2.task9;
  */
 public class Task9 {
     public static void main(String[] args) {
-//        Для собственных проверок можете делать любые изменения в этом методе
+        System.out.println(getPascalTriangle(6));
     }
 
     static String getPascalTriangle(int n) {
-        // Ваш код
-        return null;
+
+        if (n <= 0) {
+            return "";
+        }
+
+        int lastStringLength = 0;
+        StringBuilder pascalTriangle = new StringBuilder("1");
+        pascalTriangle.append("\n");
+
+        for (int i = 1; i < n; i++) {
+            StringBuilder currentString = new StringBuilder();
+            int currentElement = 1;
+            currentString.append("1 ");
+
+            for (int j = 1; j <= i; j++) {
+                currentElement *= (i - j + 1);
+                currentElement /= j;
+                if (j < i) {
+                    currentString.append(currentElement).append(" ");
+                } else {
+                    currentString.append(currentElement);
+                }
+            }
+            currentString.append("\n");
+            lastStringLength = currentString.length() - 1;
+            pascalTriangle.append(currentString);
+        }
+
+        int startStringIndex = 0;
+        int currentStringLength = 0;
+
+        for (int i = 0; i < pascalTriangle.length() - lastStringLength; i++) {
+            if (pascalTriangle.charAt(i) == '\n') {
+                pascalTriangle.insert(startStringIndex, " ".repeat((lastStringLength - currentStringLength) / 2));
+                i +=(lastStringLength - currentStringLength) / 2;
+                currentStringLength = 0;
+                startStringIndex = i + 1;
+            } else {
+                currentStringLength += 1;
+            }
+        }
+
+        return pascalTriangle.toString();
     }
 }
